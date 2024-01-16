@@ -15,7 +15,7 @@ This project is a simple REST-based Go application with a basic counter function
 1. Clone the repository:
 
    ```
-   git clone https://github.com/yourusername/go-counter-app.git
+   git clone git@github.com:jashif/counters.git
 
    ```
 
@@ -82,11 +82,7 @@ Contributions, issues, and feature requests are welcome. Feel free to check [iss
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
-## Contact
-
-Your Name - [your-email@example.com](mailto:your-email@example.com)
-
-Project Link: [https://github.com/yourusername/go-counter-app](https://github.com/yourusername/go-counter-app)
+Project Link: [https://github.com/jashif/counters](https://github.com/jashif/counters)
 
 ## Acknowledgments
 
