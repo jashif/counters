@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "commonjs",
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "lib": ["esnext", "dom"],
+    "esModuleInterop": true,
+    "allowJs": true,
+    "allowImportingTsExtensions": false,
+    "skipLibCheck": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "baseUrl": "src",
+    "isolatedModules": true,
+    "strictNullChecks": true,
+    "jsx": "react-jsx",
+    "forceConsistentCasingInFileNames": true
+  }
+}

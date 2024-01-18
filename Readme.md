@@ -27,10 +27,20 @@ This project is a simple REST-based Go application with a basic counter function
 Run the application using:
 
 ```bash
-go run ./cmd/server/main.go
+go run ./server/cmd/main.go
+```
+
+### Running Via Docker
+
+Run the application using docker:
+
+```bash
+ docker-compose up --build
 ```
 
 The server will start on port 8080.
+
+The app will start on port 3001.
 
 ## API Endpoints
 
