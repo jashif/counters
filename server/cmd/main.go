@@ -1,8 +1,10 @@
 package main
 
 import (
-	"counter-app/counter"
 	"counter-app/handler"
+	"counter-app/internal/repository"
+	"counter-app/internal/service"
+	"counter-app/logger"
 	"log"
 	"net/http"
 
@@ -10,8 +12,8 @@ import (
 )
 
 func main() {
-	repo := counter.NewInMemoryRepository()
-	service := counter.NewService(repo)
+	repo := repository.NewInMemoryRepository()
+	service := service.NewService(repo)
 	counterHandler := handler.NewCounterHandler(service)
 
 	// Initialize the mux router
@@ -21,7 +23,7 @@ func main() {
 
 	// Start the server
 	log.Println("Server starting on port 8080...")
-	log.Fatal(http.ListenAndServe(":8080", CORS(r)))
+	log.Fatal(http.ListenAndServe(":8080", CORS(logger.NewLogger(r))))
 }
 
 func CORS(next http.Handler) http.Handler {
