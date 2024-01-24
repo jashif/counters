@@ -1,0 +1,92 @@
+.app-container {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+header {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
+
+.main-content {
+  margin: 0 auto;
+  width: 80%;
+}
+
+.counter-creator input {
+  padding: 10px;
+  margin-right: 10px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  width: calc(100% - 120px); /* Adjust input width */
+}
+
+.counter-creator button {
+  padding: 10px 15px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100px; /* Fixed width for button */
+}
+
+.counter-creator button:hover {
+  background-color: #45a049;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  background-color: #f9f9f9;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+li button {
+  padding: 5px 10px;
+  margin-left: 10px;
+  background-color: #008cba;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+li button:hover {
+  background-color: #007b9e;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+  .main-content {
+    width: 95%;
+  }
+
+  .counter-creator input,
+  .counter-creator button {
+    width: 100%;
+    margin: 5px 0; /* Stack input and button */
+  }
+
+  li button {
+    width: 100%; /* Full width buttons in list */
+    margin-top: 5px;
+  }
+}

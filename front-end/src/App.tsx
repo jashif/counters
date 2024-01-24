@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import './App.css';
 const App = () => {
   const [counters, setCounters] = useState([]);
   const [counterName, setCounterName] = useState('');
@@ -45,24 +45,36 @@ const App = () => {
   };
 
   return (
-    <div>
-      <input
-        type="text"
-        value={counterName}
-        onChange={e => setCounterName(e.target.value)}
-        placeholder="Counter Name"
-      />
-      <button onClick={createCounter}>Create Counter</button>
-      <h2> Counters:</h2>
+    <div className="app-container">
+      <header>
+        <h1>Simple Counter Application</h1>
+      </header>
 
-      <ul>
-        {Object.entries(counters).map(([name, value]) => (
-          <li key={name}>
-            {name}: {value}
-            <button onClick={() => incrementCounter(name)}>Increment</button>
-          </li>
-        ))}
-      </ul>
+      <div className="main-content">
+        <div className="counter-creator">
+          <input
+            type="text"
+            value={counterName}
+            onChange={e => setCounterName(e.target.value)}
+            placeholder="Counter Name"
+          />
+          <button onClick={createCounter}>Create Counter</button>
+        </div>
+
+        <h2>Counters:</h2>
+        <ul>
+          {Object.entries(counters).map(([name, value]) => (
+            <li key={name}>
+              {name}: {value}
+              <button onClick={() => incrementCounter(name)}>Increment</button>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <footer>
+        <p>© 2024 Simple Counter App</p>
+      </footer>
     </div>
   );
 };
