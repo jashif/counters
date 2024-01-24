@@ -63,10 +63,12 @@ const App = () => {
 
         <h2>Counters:</h2>
         <ul>
-          {Object.entries(counters).map(([name, value]) => (
-            <li key={name}>
-              {name}: {value}
-              <button onClick={() => incrementCounter(name)}>Increment</button>
+          {counters.map((counter: any) => (
+            <li key={counter.name}>
+              {counter.name}: {counter.value}
+              <button onClick={() => incrementCounter(counter.name)}>
+                Increment
+              </button>
             </li>
           ))}
         </ul>

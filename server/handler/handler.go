@@ -87,7 +87,18 @@ func (h *CounterHandler) GetCounterValue(w http.ResponseWriter, r *http.Request)
 
 func (h *CounterHandler) GetAllCounters(w http.ResponseWriter, r *http.Request) {
 	counters := h.service.GetAllCounters()
-	json.NewEncoder(w).Encode(counters)
+	json.NewEncoder(w).Encode(mapToSlice(counters))
+}
+
+func mapToSlice(m map[string]int) []models.Counter {
+    var slice []models.Counter
+	if len(m) == 0 {
+        return []models.Counter{}
+    }
+    for key, value := range m {
+        slice = append(slice, models.Counter{Name: key, Value: value})
+    }
+    return slice
 }
 
 // RegisterRoutes sets up the routes for the counter application.
