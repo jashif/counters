@@ -13,7 +13,7 @@ func TestNewService(t *testing.T) {
     // Test Create
     newService.CreateCounter("testCounter")
     value := newService.GetCounterValue("testCounter");
-    if value ==-1 {
+    if value !=0 {
         t.Errorf("Create failed to create a new counter")
     }
 }

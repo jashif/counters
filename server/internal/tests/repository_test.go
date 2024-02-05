@@ -14,8 +14,13 @@ func TestInMemoryRepository(t *testing.T) {
     // Test Create
     repo.Create("testCounter")
     value := repo.Get("testCounter");
-    if value ==-1 {
+    if value != 0 {
         t.Errorf("Create failed to create a new counter")
+    }
+
+    err:=repo.Create("testCounter2")
+    if err !=nil {
+        t.Errorf("Create failed")
     }
 
     // Test Increment
@@ -32,7 +37,7 @@ func TestInMemoryRepository(t *testing.T) {
 
     // Test GetAll
     allCounters := repo.GetAll()
-    expected := map[string]int{"testCounter": 1}
+    expected := map[string]int{"testCounter": 1, "testCounter2": 0}
     if !reflect.DeepEqual(allCounters, expected) {
         t.Errorf("GetAll failed, got %v, want %v", allCounters, expected)
     }
