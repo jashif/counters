@@ -3,42 +3,59 @@ package tests
 
 import (
 	"counter-app/internal/repository"
-
-	"reflect"
+	"counter-app/models"
 	"testing"
 )
 
 func TestInMemoryRepository(t *testing.T) {
-    repo := repository.NewInMemoryRepository()
+	repo := repository.NewInMemoryRepository()
 
-    // Test Create
-    repo.Create("testCounter")
-    value := repo.Get("testCounter");
-    if value != 0 {
-        t.Errorf("Create failed to create a new counter")
-    }
+	// Test Create
+	err := repo.Create("testCounter")
+	if err != nil {
+		t.Errorf("Create failed: %v", err)
+	}
 
-    err:=repo.Create("testCounter2")
-    if err !=nil {
-        t.Errorf("Create failed")
-    }
+	value := repo.Get("testCounter")
+	if value != 0 {
+		t.Errorf("Create failed to create a new counter, got %d", value)
+	}
 
-    // Test Increment
-    repo.Increment("testCounter")
-    if count := repo.Get("testCounter"); count != 1 {
-        t.Errorf("Increment failed, got %d, want %d", count, 1)
-    }
+	err = repo.Create("testCounter2")
+	if err != nil {
+		t.Errorf("Create failed: %v", err)
+	}
 
-    // Test Get
-    count := repo.Get("testCounter")
-    if count != 1 {
-        t.Errorf("Get failed, got %d, want %d", count, 1)
-    }
+	// Test Increment
+	_, err = repo.Increment("testCounter")
+	if err != nil {
+		t.Errorf("Increment failed: %v", err)
+	}
 
-    // Test GetAll
-    allCounters := repo.GetAll()
-    expected := map[string]int{"testCounter": 1, "testCounter2": 0}
-    if !reflect.DeepEqual(allCounters, expected) {
-        t.Errorf("GetAll failed, got %v, want %v", allCounters, expected)
-    }
+	if count := repo.Get("testCounter"); count != 1 {
+		t.Errorf("Increment failed, got %d, want %d", count, 1)
+	}
+
+	// Test Get
+	count := repo.Get("testCounter")
+	if count != 1 {
+		t.Errorf("Get failed, got %d, want %d", count, 1)
+	}
+
+	// Test GetAll
+	allCounters := repo.GetAll()
+	expected := []models.Counter{{Name: "testCounter", Value: 1}, {Name: "testCounter2", Value: 0}}
+
+	for _, expCounter := range expected {
+		found := false
+		for _, counter := range allCounters {
+			if counter.Name == expCounter.Name && counter.Value == expCounter.Value {
+				found = true
+				break
+			}
+		}
+		if !found {
+			t.Errorf("GetAll failed, expected counter %v not found in %v", expCounter, allCounters)
+		}
+	}
 }

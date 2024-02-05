@@ -2,6 +2,7 @@ package service
 
 import (
 	"counter-app/internal/repository"
+	"counter-app/models"
 )
 
 // CounterService defines the operations available on counters.
@@ -9,7 +10,7 @@ type CounterService interface {
 	CreateCounter(name string)(error)
 	IncrementCounter(name string)(int,error)
 	GetCounterValue(name string) int
-	GetAllCounters() map[string]int
+	GetAllCounters() []models.Counter
 }
 
 type service struct {
@@ -32,6 +33,6 @@ func (s *service) GetCounterValue(name string) int {
 	return s.repo.Get(name)
 }
 
-func (s *service) GetAllCounters() map[string]int {
+func (s *service) GetAllCounters() []models.Counter {
 	return s.repo.GetAll()
 }
